@@ -1,0 +1,37 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-compatible-textcolor: white;
+        --bg-color: rgb(20, 20, 20);
+    }
+
+    body {
+        background-color: rgb(20, 20, 20);
+        color: white;
+    }
+
+    footer {
+        color: wheat;
+        background-color: rgb(69, 69, 69);
+    }
+}
+
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-compatible-textcolor: black;
+        --bg-color: rgb(20, 20, 20);
+    }
+    body {
+        background-color: rgb(230, 230, 230);
+        color: black;
+    }
+
+    footer {
+        color: wheat;
+        background-color: gray;
+    }
+}

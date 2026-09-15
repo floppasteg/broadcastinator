@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>console - broadcastinator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="ui.js"></script>
+    <script src="masterctl.js"></script>
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+    <script>
+        document.body.onload = function () {
+            execHold(document.getElementById('start'), 'start', 2000)
+            execHold(document.getElementById('override'), 'override', 2000)
+            execHold(document.getElementById('shutdown-soft'), 'shutdown-soft', 2000)
+            execHold(document.getElementById('shutdown-hard'), 'shutdown-hard', 2000)
+            execHold(document.getElementById('e-stop'), 'e-stop', 5000)
+        }
+    </script>
+    <div id="status" style="background-color: gray; padding: 15px 32px; ">Unknown (note: if you are seeing this, you
+        probably just opened the HTML file without starting the server)</div>
+    <footer class="master-control-panel center">
+        <p style="margin-right: 3em;">Master controls(hold for 2s)</p>
+        <button class="master-control-buttons" id="start" style="background-color:green">Start</button>
+        <button class="master-control-buttons" id="override" style="background-color: yellow;">Override</button>
+        <button class="master-control-buttons" id="shutdown-soft" style="background-color: orange;">Shutdown
+            (soft)</button>
+        <button class="master-control-buttons" id="shutdown-hard" style="background-color: orange;">Shutdown
+            (hard)</button>
+        <button class="master-control-buttons" id="e-stop" style="background-color: red;">Emergency Stop (hold for
+            5s)</button>
+    </footer>
+</body>
+
+</html>
