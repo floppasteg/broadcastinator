@@ -1,4 +1,4 @@
-const masterCtlAPIPath = "/masterctrl"
+const masterCtlAPIPath = "/masterctl"
 
 /**
  * Send a master command
@@ -53,7 +53,7 @@ function masterCommandToStatus(cmd, extra) {
  * @param {string} cmdname - see cmd parameter of sendMasterCommand
  * @param {number} dur
  */
-function execHold(btn, cmdname, dur) {
+function masterctlHold(btn, cmdname, dur) {
     var t;
     btn.onmousedown = function () {
         setTimeout(function () {
