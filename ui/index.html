@@ -35,6 +35,26 @@
         <button class="master-control-buttons" id="e-stop" style="background-color: red;">Emergency Stop (hold for
             5s)</button>
     </footer>
+    <script>
+        document.body.onload = function () {
+            if (environ() == "online") {
+                let req = new XMLHttpRequest()
+                req.open("GET", "http://" + location.hostname + ":8088/conn")
+                req.addEventListener('error', function () {
+                    console.error("could not send master command")
+                    changeStatus("disconnected", "cannot see connection test, see F12 console for details")
+                })
+                req.addEventListener('load', function () {
+                    let obj = JSON.parse(this.responseText)
+                    if (obj.status != 'success') {
+                        console.error("connTest.status != success, details: ", obj)
+                    }
+                    changeStatus("connected-inactive", "")
+                })
+                req.send()
+            }
+        }
+    </script>
 </body>
 
 </html>
