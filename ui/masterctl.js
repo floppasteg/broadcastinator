@@ -6,14 +6,14 @@ const masterCtlAPIPath = "/masterctl"
  */
 function sendMasterCommand(cmd) {
     console.log(location.hostname)
-    if (location.hostname != 'localhost' && location.hostname != '127.0.0.1') {
+    if (environ() == "offline") {
         console.log("assuming debugging in operation... setting status instead");
         masterCommandToStatus(cmd)
         return
     }
     console.log("sending master command %s...", cmd)
     let req = new XMLHttpRequest()
-    req.open("POST", "http://" + location.hostname+ ":8088" + masterCtlAPIPath + "/" + cmd)
+    req.open("POST", "http://" + location.hostname + ":8088" + masterCtlAPIPath + "/" + cmd)
     req.addEventListener('error', function () {
         console.error("could not send master command")
     })
@@ -23,9 +23,6 @@ function sendMasterCommand(cmd) {
             console.error("MasterCommand.status != success, details: ", obj)
         }
         masterCommandToStatus(cmd)
-    })
-    req.addEventListener('error', function () {
-        console.error("")
     })
     req.send()
 }

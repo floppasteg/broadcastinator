@@ -5,8 +5,8 @@
  */
 function changeStatus(status, extra) {
     let elem = document.getElementById("status")
-        elem.classList.remove("blink-tobg","breathe-tobg","blink-tobgfast")
-  
+    elem.classList.remove("blink-tobg", "breathe-tobg", "blink-tobgfast")
+
     switch (status) {
         case "disconnected":
             elem.style.backgroundColor = "orange"
@@ -38,4 +38,10 @@ function changeStatus(status, extra) {
         default:
             console.error("unknown status %s", status)
     }
+}
+
+function environ() {
+    if (location.hostname == "localhost" || location.hostname == "127.0.0.1")
+        return "online"
+    else return "offline"
 }
