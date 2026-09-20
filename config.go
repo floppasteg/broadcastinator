@@ -8,12 +8,13 @@ import (
 )
 
 type MasterConfig struct {
-	StreamURL        string `toml:"streamurl"`
-	StreamKeyFile    string `toml:"streamkey"`
-	ServiceSpecifier string `toml:"service-spec"`
-	ProgramRoot      string `toml:"program"`
-	ExtraAssets      string `toml:"extras"`
-	LogFilePath      string `toml:"logfile"`
+	StreamURL        string    `toml:"streamurl"`
+	StreamKeyFile    string    `toml:"streamkey"`
+	ServiceSpecifier string    `toml:"service-spec"`
+	ProgramRoot      string    `toml:"program"`
+	ExtraAssets      string    `toml:"extras"`
+	LogFilePath      string    `toml:"logfile"`
+	StartAt          time.Time `toml:"startat"`
 }
 
 // Used in programs
@@ -50,11 +51,12 @@ type ProgramConfig struct {
 type AssetConfig struct {
 	InterruptCard string `toml:"interrupt"`
 	EASCard       string `toml:"eas"`
+	LiveWaitCard  string `toml:"wait"`
 }
 
 func parseGeneric[T MasterConfig | ChannelConfig](confile io.Reader, conf T) T {
 	dec := toml.NewDecoder(confile)
 	_, err := dec.Decode(&conf)
-	chk(err)
+	chk(err, true)
 	return conf
 }
