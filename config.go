@@ -13,6 +13,7 @@ type MasterConfig struct {
 	ServiceSpecifier string `toml:"service-spec"`
 	ProgramRoot      string `toml:"program"`
 	ExtraAssets      string `toml:"extras"`
+	LogFilePath      string `toml:"logfile"`
 }
 
 // Used in programs
@@ -40,6 +41,8 @@ type ProgramConfig struct {
 	Breaks             []Break  `toml:"breaks"`
 	BreakTitleCard     string   `toml:"break-title-card"`
 	BreakYoureWatching string   `toml:"break-youre-watching"`
+
+	confpath string
 }
 
 // Used in asset files
