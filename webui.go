@@ -31,7 +31,7 @@ func loadInterface() {
 	mux := http.NewServeMux()
 	fs := http.FileServer(http.Dir("ui"))
 	mux.Handle("/", fs)
-	chk(http.ListenAndServe(":8080", mux))
+	chk(http.ListenAndServe(":8080", mux), false)
 }
 
 const masterctlAPIRoot = "/masterctl"

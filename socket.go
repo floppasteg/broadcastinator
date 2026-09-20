@@ -37,7 +37,7 @@ func initWebsocket() *Socket {
 	}
 	http.HandleFunc("/crunchy", func(w http.ResponseWriter, r *http.Request) {
 		con, err := upg.Upgrade(w, r, nil)
-		chk(err)
+		chk(err, true)
 		sock.sock = con
 	})
 
@@ -46,7 +46,7 @@ func initWebsocket() *Socket {
 
 func (s *Socket) printf(format string, v ...any) {
 	w, e := s.sock.NextWriter(websocket.TextMessage)
-	chk(e)
+	chk(e, false)
 	fmt.Fprintf(w, format, v...)
 }
 

@@ -67,7 +67,7 @@ Options:
 	}
 
 	masconf, err := os.Open(*masconfPath)
-	chk(err)
+	chk(err, true)
 	config := MasterConfig{}
 	config = parseGeneric(masconf, config)
 

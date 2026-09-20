@@ -34,10 +34,12 @@ var (
 	globalState  globalStateStruct
 )
 
-func chk(e error) {
+func chk(e error, panicable bool) {
 	if e != nil {
 		globalLogger.Error(fmt.Sprintf("error caught in chk(e error): %v", e))
-		panic(e)
+		if panicable {
+			panic(e)
+		}
 	}
 }
 
@@ -45,10 +47,10 @@ func openOrCreate(path string) *os.File {
 	f, e := os.OpenFile(path, os.O_WRONLY|os.O_APPEND, 0777)
 	if errors.Is(e, os.ErrNotExist) {
 		f, e = os.Create(path)
-		chk(e)
+		chk(e, true)
 		return f
 	} else {
-		chk(e)
+		chk(e, true)
 	}
 	println(f == nil)
 	// check for "bad file descriptor" issues before passing it on to Gin and slog where the error
