@@ -31,7 +31,7 @@ if (environ() == "online") {
         let obj = JSON.parse(ev.data)
         switch(obj.msgtype) {
             case "log":
-                updateLog(obj.msgdata)
+                updateLog(obj.msgdata.substring(4),obj.msgdata.substring(0,4))
             case "status":
                 switch(obj.msgdata.substring(0,4)) {
                     case "idle":

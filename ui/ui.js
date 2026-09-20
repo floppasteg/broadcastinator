@@ -70,7 +70,7 @@ function updateLog(logline, severity) {
     let timestamp = new Date()
     let line = `<span style="color:gray">[${timestamp.getFullYear()}-${timestamp.getMonth()}-${timestamp.getDate()} ${timestamp.getHours()}:${timestamp.getMinutes()}:${timestamp.getSeconds()}.${timestamp.getMilliseconds()}]</span> `
     switch (severity) {
-        case "debug":
+        case "debg":
             line += `<span style="color:#5a58f4">${escapedLogline}</span>\n`
             break;
         case "info":
@@ -79,7 +79,7 @@ function updateLog(logline, severity) {
         case "warn":
             line += `<span style="color:yellow">${escapedLogline}</span>\n`
             break;
-        case "error":
+        case "eror":
             line += `<span style="color:red">${escapedLogline}</span>\n`
             break;
     }
