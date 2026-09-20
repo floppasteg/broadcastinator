@@ -24,6 +24,12 @@
     </script>
     <div id="status" style="background-color: gray; padding: 15px 32px; ">Unknown (note: if you are seeing this, you
         probably just opened the HTML file without starting the server)</div>
+    <div id="log1-container"></div>
+    <div style="position: relative;">
+        <button id="log1-clear" onclick="clearLog()">Clear log</button>
+        <button id="log1-restore" onclick="restoreLog()">Restore log</button>
+        <button id="log1-follow" onclick="followLog()">Follow</button>
+    </div>
     <footer class="master-control-panel center">
         <p style="margin-right: 3em;">Master controls(hold for 2s)</p>
         <button class="master-control-buttons" id="start" style="background-color:green">Start</button>

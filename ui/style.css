@@ -37,12 +37,41 @@ footer {
     font-size: 16px;
 }
 
+button {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 4px 4px;
+    margin: 4px 2px;
+    font-size: 100%;
+}
+
+#log1-container {
+    width: 100em;
+    height: 20em;
+    border: 2px solid #000;
+    margin: 20px;
+    padding: 10px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    font-size: 12px;
+    white-space: pre;
+    background-color: var(--bg-color-2);
+    color: var(--bg-compatible-textcolor);
+}
+
+#log1-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* below 2 animations mainly used in status bar */
+
 .blink-tobg {
-    animation: blinker .5s steps(1,end) infinite;
+    animation: blinker .5s steps(1, end) infinite;
 }
 
 .blink-tobgfast {
-    animation: blinker .25s steps(1,end) infinite;
+    animation: blinker .25s steps(1, end) infinite;
 }
 
 .breathe-tobg {
