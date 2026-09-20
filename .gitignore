@@ -1,5 +1,2 @@
-# Internal copy of jquery, so that we don't have to nag the server every page load
-ui/jquery-4.0.0.min.js
-
 # landfill of stuff that we don't use anymore
 dump/
