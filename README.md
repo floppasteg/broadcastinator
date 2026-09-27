@@ -1,3 +1,3 @@
 # Broadcastinator
 
-A piece of (slightly) overcomplicated YouTube-oriented RTMP broadcast equipment.
+A piece of (slightly) overcomplicated YouTube-oriented ~~RTMP~~ HLS broadcast equipment.
