@@ -26,6 +26,7 @@ import (
 	"log/slog"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -66,32 +67,36 @@ Options:
 		gin.SetMode(gin.ReleaseMode)
 	}
 
+	globalState = new(globalStateStruct)
+
 	masconf, err := os.Open(*masconfPath)
 	chk(err, true)
 	config := MasterConfig{}
 	config = parseGeneric(masconf, config)
 
 	var logf *os.File
-	if config.LogFilePath != "" {
-		logf = openOrCreate(config.LogFilePath)
-		globalLogger = slog.New(slog.NewTextHandler(logf, &slog.HandlerOptions{
+	if config.LogDirPath != "" {
+		plog := openOrCreate(filepath.Join(config.LogDirPath, "program.log"))
+		globalState.progLogger = slog.New(slog.NewTextHandler(plog, &slog.HandlerOptions{
 			Level: slog.LevelDebug,
 		}))
-		globalLogger.Info(fmt.Sprintf("----- PROGRAM STARTED (%s) -----", time.Now().Format(time.RFC1123Z)))
+		globalState.progLogger.Info(fmt.Sprintf("----- PROGRAM STARTED (%s) -----", time.Now().Format(time.RFC1123Z)))
+		logf = openOrCreate(filepath.Join(config.LogDirPath, "api.log"))
+		fmt.Fprintf(logf, "----- PROGRAM STARTED (%s) -----", time.Now().Format(time.RFC1123Z))
 	}
 
 	if !*noweb {
 		fmt.Fprintln(os.Stderr, "Loading web interface")
-		globalLogger.Info("Loading web interface")
+		globalState.progLogger.Info("Loading web interface")
 		go loadInterface()
 	}
 	fmt.Fprintln(os.Stderr, "Loading API")
-	globalLogger.Info("Loading APIs")
+	globalState.progLogger.Info("Loading APIs")
 	go loadAPI(logf, *dummyEstop)
 
 	// now we wait...
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
 	<-c
-	globalLogger.Info(fmt.Sprintf("----- PROGRAM STOPPED (%s) -----", time.Now().Format(time.RFC1123Z)))
+	globalState.progLogger.Info(fmt.Sprintf("----- PROGRAM STOPPED (%s) -----", time.Now().Format(time.RFC1123Z)))
 }

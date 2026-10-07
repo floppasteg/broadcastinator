@@ -48,7 +48,7 @@ func loadAPI(logfile *os.File, dummyexit bool) {
 	}))
 
 	route.POST(masterctlAPIRoot+"/start", func(ctx *gin.Context) {
-		globalLogger.Debug("console requested to start livestreaming")
+		globalState.progLogger.Debug("console requested to start livestreaming")
 		ctx.JSON(200, gin.H{
 			"status":    "success",
 			"data":      "",
@@ -56,7 +56,7 @@ func loadAPI(logfile *os.File, dummyexit bool) {
 		})
 	})
 	route.POST(masterctlAPIRoot+"/shutdown-soft", func(ctx *gin.Context) {
-		globalLogger.Debug("console requested a soft shutdown")
+		globalState.progLogger.Debug("console requested a soft shutdown")
 		ctx.JSON(200, gin.H{
 			"status":    "success",
 			"data":      "",
@@ -64,7 +64,7 @@ func loadAPI(logfile *os.File, dummyexit bool) {
 		})
 	})
 	route.POST(masterctlAPIRoot+"/shutdown-hard", func(ctx *gin.Context) {
-		globalLogger.Debug("console requested a hard shutdown")
+		globalState.progLogger.Debug("console requested a hard shutdown")
 		ctx.JSON(200, gin.H{
 			"status":    "success",
 			"data":      "",
@@ -72,7 +72,7 @@ func loadAPI(logfile *os.File, dummyexit bool) {
 		})
 	})
 	route.POST(masterctlAPIRoot+"/e-stop", func(ctx *gin.Context) {
-		globalLogger.Debug("console requested a *emergency stop*")
+		globalState.progLogger.Debug("console requested a *emergency stop*")
 		ctx.JSON(200, gin.H{
 			"status":    "success",
 			"data":      "",
@@ -83,7 +83,7 @@ func loadAPI(logfile *os.File, dummyexit bool) {
 		}
 	})
 	route.GET("/conn", func(ctx *gin.Context) {
-		globalLogger.Debug("connection test requested")
+		globalState.progLogger.Debug("connection test requested")
 		ctx.JSON(200, gin.H{
 			"status":    "success",
 			"data":      "no data yet",

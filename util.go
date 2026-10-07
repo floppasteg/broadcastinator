@@ -26,17 +26,16 @@ import (
 )
 
 type globalStateStruct struct {
-	logger *slog.Logger
+	progLogger *slog.Logger
 }
 
 var (
-	globalLogger *slog.Logger
-	globalState  globalStateStruct
+	globalState *globalStateStruct
 )
 
 func chk(e error, panicable bool) {
 	if e != nil {
-		globalLogger.Error(fmt.Sprintf("error caught in chk(e error): %v", e))
+		globalState.progLogger.Error(fmt.Sprintf("error caught in chk(e error): %v", e))
 		if panicable {
 			panic(e)
 		}
