@@ -13,7 +13,7 @@ type MasterConfig struct {
 	ServiceSpecifier string    `toml:"service-spec"`
 	ProgramRoot      string    `toml:"program"`
 	ExtraAssets      string    `toml:"extras"`
-	LogFilePath      string    `toml:"logfile"`
+	LogDirPath       string    `toml:"logfile"`
 	StartAt          time.Time `toml:"startat"`
 }
 
